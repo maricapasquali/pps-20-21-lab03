@@ -68,4 +68,34 @@ class ListTest {
     assertEquals(Some(-20), max(Cons(-20, Nil())))
   }
 
+  // 3
+  import u02.Modules.Person
+  import u02.Modules.Person.{Student, Teacher}
+
+  @Test def testCourses(): Unit = {
+    val c1 = "applicazioni e servizi web"
+    val c2 = "machine learning"
+    val c3 = "sistemi distribuiti"
+
+    val t1: Person = Teacher("anna verdi", c1)
+    val t2: Person = Teacher("carlo bianchi", c2)
+    val t3: Person = Teacher("mario rossi", c3)
+
+    val s1: Person = Student("mario rossi", 2017)
+    val s2: Person = Student("giacomo rossi", 2015)
+    val s3: Person = Student("giada bianchi", 2017)
+
+    val p1 = Cons(t1, Cons(s1, Cons(t2, Cons(t3, Nil()))))
+
+    val p2 = Cons(s1, Cons(s2, Cons(s3, Nil())))
+
+    assertEquals(Cons(c1, Cons(c2, Cons(c3, Nil()))), courses(p1))
+
+    assertEquals(Nil(), courses(Nil()))
+
+    assertEquals(Nil(), courses(p2))
+
+  }
+
+
 }

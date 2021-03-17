@@ -39,4 +39,14 @@ object List {
     case Nil() => None()
   }
 
+  // 3
+  import u02.Modules.Person
+  import u02.Modules.Person.Teacher
+
+  def courses(people: List[Person]): List[String] =
+    flatMap(people)((p: Person) => p match {
+      case Teacher(_, course) => Cons(course, Nil())
+      case _ => Nil()
+    })
+
 }
