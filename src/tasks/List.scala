@@ -14,4 +14,10 @@ object List {
     case _ => l
   }
 
+  //1.b
+  def flatMap[A, B](l: List[A])(f: A => List[B]): List[B] = l match {
+    case Cons(head, tail) => append(f(head), flatMap(tail)(f))
+    case Nil() => Nil()
+  }
+
 }
