@@ -20,4 +20,14 @@ object List {
     case Nil() => Nil()
   }
 
+  //1.c Write map in terms of flatMap
+  def mapInTermOfFlatMap[A, B](l: List[A])(mapper: A => B): List[B] = flatMap(l)(x => Cons(mapper(x), Nil()))
+
+  //1.d Write filter in terms of flatMap
+  def filterInTermOfFlatMap[A](l: List[A])(predicate: A => Boolean): List[A] =
+    flatMap(l)((a: A) => a match {
+      case a if predicate(a) => Cons(a, Nil())
+      case _ => Nil()
+    })
+
 }

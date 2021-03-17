@@ -27,4 +27,26 @@ class ListTest {
 
   }
 
+  //1.c
+  @Test def testMap(): Unit = {
+
+    assertEquals(Cons(20, Cons(40, Cons(60, Nil()))), mapInTermOfFlatMap(lst)(_ * 2))
+
+    assertEquals(Nil(), mapInTermOfFlatMap(Nil[Int]())(_ + 1))
+
+  }
+
+  //1.d
+  @Test def testFilter(): Unit = {
+
+    assertEquals(Cons(20, Cons(30, Nil())), filterInTermOfFlatMap(lst)(_ > 15))
+
+    val lst1 = Cons(13, Cons(3, Cons(30, Cons(2, Cons(1, Nil())))))
+
+    val eLst1 = Cons(13, Cons(3, Cons(2, Cons(1, Nil()))))
+
+    assertEquals(eLst1, filterInTermOfFlatMap(lst1)(_ < 14))
+
+  }
+
 }
