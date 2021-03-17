@@ -49,4 +49,23 @@ class ListTest {
 
   }
 
+  //2
+  import u02.Optionals.Option.{None, Some};
+
+  @Test def testMax(): Unit = {
+    assertEquals(None(), max(Nil()))
+
+    assertEquals(Some(30), max(lst))
+
+    assertEquals(Some(25), max(Cons(10, Cons(25, Cons(20, Nil())))))
+
+    assertEquals(Some(-1), max(Cons(-10, Cons(-1, Cons(-20, Nil())))))
+
+    assertEquals(Some(10), max(Cons(10, Cons(-1, Cons(-20, Nil())))))
+
+    assertEquals(Some(10), max(Cons(10, Nil())))
+
+    assertEquals(Some(-20), max(Cons(-20, Nil())))
+  }
+
 }

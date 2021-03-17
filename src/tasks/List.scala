@@ -30,4 +30,13 @@ object List {
       case _ => Nil()
     })
 
+  // 2
+  import u02.Optionals.Option
+  import u02.Optionals.Option.{None, Some, getOrElse}
+
+  def max(l: List[Int]): Option[Int] = l match {
+    case Cons(head, tail) => Some(math.max(head, getOrElse(max(tail), Int.MinValue)))
+    case Nil() => None()
+  }
+
 }
