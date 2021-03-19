@@ -9,6 +9,8 @@ class ListTest {
 
   private val lst = Cons(10, Cons(20, Cons(30, Nil())))
 
+  private val lst1 = Cons(3, Cons(7, Cons(1, Cons(5, Nil()))))
+
   //1.a
   @Test def testDrop(): Unit = {
     assertEquals(Cons(20, Cons(30, Nil())), drop(lst, 1))
@@ -97,5 +99,39 @@ class ListTest {
 
   }
 
+  //4 foldLeft & foldRight (Hard)
+  @Test def testFoldLeft(): Unit = {
+
+    assertEquals(3, foldLeft(Nil[Int]())(3)(_ - _))
+
+    assertEquals(16, foldLeft(lst1)(0)(_ + _))
+
+    assertEquals(17, foldLeft(lst1)(1)(_ + _))
+
+    assertEquals(-16, foldLeft(lst1)(0)(_ - _))
+
+    assertEquals(-14, foldLeft(lst1)(2)(_ - _))
+
+    assertEquals("->", foldLeft(Nil[String]())("->")(_ + _))
+
+    assertEquals("<-3-7-1-5", foldLeft(lst1)("<")(_ + "-" + _))
+
+  }
+
+  @Test def testFoldRight(): Unit = {
+
+    assertEquals(3, foldRight(Nil[Int]())(3)(_ - _))
+
+    assertEquals(-8, foldRight(lst1)(0)(_ - _))
+
+    assertEquals(16, foldRight(lst1)(0)(_ + _))
+
+    assertEquals(-6, foldRight(lst1)(2)(_ - _))
+
+    assertEquals("->", foldRight(Nil[String]())("->")(_ + _))
+
+    assertEquals("3-7-1-5->", foldRight(lst1)(">")(_ + "-" + _))
+
+  }
 
 }

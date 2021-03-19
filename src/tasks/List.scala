@@ -49,4 +49,26 @@ object List {
       case _ => Nil()
     })
 
+  //4 foldLeft & foldRight (Hard)
+  @tailrec
+  def foldLeft[A, B](l: List[A])(acc: B)(op: (B, A) => B): B = l match {
+    case Cons(head, tail) => foldLeft(tail)(op(acc, head))(op)
+    case Nil() => acc
+  }
+
+  def foldRight[A, B](lst: List[A])(acc: B)(op: (A, B) => B): B = {
+    @tailrec
+    def _foldRight(l: List[A])(a: B)(f: (A, B) => B): B = l match {
+      case Cons(head, tail) => _foldRight(tail)(f(head, a))(f)
+      case Nil() => a
+    }
+
+    _foldRight(reverse(lst))(acc)(op)
+  }
+
+  private def reverse[A](l: List[A]): List[A] = l match {
+    case Cons(head, tail) => append(reverse(tail), Cons(head, Nil()))
+    case Nil() => l
+  }
+
 }
