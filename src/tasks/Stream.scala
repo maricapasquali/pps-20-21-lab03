@@ -16,4 +16,7 @@ object Stream {
   //6
   def constant[A](k : =>A): Stream[A] = cons(k, constant(k))
 
+  //7
+  val fibs: Stream[Int] = map(iterate((0, 1)) { case (x1, x2) => (x2, x1 + x2) }) { case (x1, _) => x1 }
+
 }

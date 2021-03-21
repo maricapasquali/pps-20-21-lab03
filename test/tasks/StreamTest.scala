@@ -29,4 +29,11 @@ class StreamTest {
     assertEquals(lst1, toList(take(constant(x))(3)))
   }
 
+  //7
+  @Test def testFibs(): Unit ={
+    val lst = Cons(0, Cons(1, Cons(1, Cons(2, Cons(3, Cons(5, Cons (8, Cons(13, Nil()))))))));
+
+    assertEquals(lst, toList(take(fibs)(8)))
+  }
+
 }
