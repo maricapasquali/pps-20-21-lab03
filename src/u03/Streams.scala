@@ -18,6 +18,11 @@ object Streams {
       Cons(() => head, () => tail)
     }
 
+    def tail[A](stream: Stream[A]): Stream[A] = stream match {
+      case Cons(_, t) => t()
+      case Empty() => empty()
+    }
+
     def toList[A](stream: Stream[A]): List[A] = stream match {
       case Cons(h,t) => List.Cons(h(), toList(t()))
       case _ => List.Nil()
