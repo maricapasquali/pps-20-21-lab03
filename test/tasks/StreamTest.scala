@@ -18,5 +18,15 @@ class StreamTest {
     assertEquals(Nil(), toList(drop(empty())(6)))
   }
 
+  //6
+  @Test def testConstant(): Unit = {
+    val k = "x";
+    val lst = Cons(k, Cons(k, Cons(k, Cons(k, Cons(k, Nil())))))
+    assertEquals(lst, toList(take(constant(k))(5)))
+
+    val x = 3;
+    val lst1 = Cons(x, Cons(x, Cons(x, Nil())))
+    assertEquals(lst1, toList(take(constant(x))(3)))
+  }
 
 }
